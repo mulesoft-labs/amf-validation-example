@@ -1,0 +1,11 @@
+PREFIX schema: <http://schema.org/>
+PREFIX amf-validation: <http://raml.org/vocabularies/amf-validation#>
+PREFIX shacl: <http://www.w3.org/ns/shacl#>
+
+# Selects the error message and JS code for all JS validations
+select ?message ?code {
+  ?functionValidation a amf-validation:FunctionValidation ;
+                      shacl:message ?message ;
+                      shacl:js ?jsConstraint .
+  ?jsConstraint amf-validation:jsCode ?code .
+}

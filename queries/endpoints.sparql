@@ -1,0 +1,16 @@
+PREFIX schema: <http://schema.org/>
+PREFIX http: <http://raml.org/vocabularies/http#>
+PREFIX hydra: <http://www.w3.org/ns/hydra/core#>
+
+# Get the path of all the endpoints with a GET method returning 200
+select ?path {
+  # we get the path from all the endpoints
+  ?endpoint a http:EndPoint ;
+            http:path ?path ;
+            hydra:supportedOperation ?operation . # endpoints have hydra:supportedOperations
+  # we get the operations with a 'get' method
+  ?operation ?mehod "get" ;
+             hydra:returns ?response . # operations hydra:returns a response
+  # we get the responses with a '200' status code
+  ?response hydra:statusCode "200" .
+} order by DESC(?path)

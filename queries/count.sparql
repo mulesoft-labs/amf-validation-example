@@ -1,0 +1,4 @@
+SELECT (COUNT(?s) AS ?num_triples)
+WHERE {
+  ?s ?p ?o
+}
