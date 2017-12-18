@@ -1,0 +1,15 @@
+PREFIX schema: <http://schema.org/>
+PREFIX http: <http://raml.org/vocabularies/http#>
+PREFIX hydra: <http://www.w3.org/ns/hydra/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+select ?path {
+  ?endpoint a http:EndPoint ;
+            http:path ?path ;
+            hydra:supportedOperation ?operation .
+  # we get the operations with a 'get' method
+  ?operation ?method "get"^^xsd:string ;
+             hydra:returns ?response . # operations hydra:returns a response
+  # we get the responses with a '200' status code
+  ?response hydra:statusCode "200"^^xsd:string .
+} order by DESC(?path)

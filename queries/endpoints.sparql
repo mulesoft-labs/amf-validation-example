@@ -9,8 +9,8 @@ select ?path {
             http:path ?path ;
             hydra:supportedOperation ?operation . # endpoints have hydra:supportedOperations
   # we get the operations with a 'get' method
-  ?operation ?mehod "get" ;
-             hydra:returns ?response . # operations hydra:returns a response
-  # we get the responses with a '200' status code
-  ?response hydra:statusCode "200" .
+    ?operation ?mehod "get" ;
+               hydra:returns ?response . # operations hydra:returns a response
+    # we get the responses with a '200' status code
+    ?response hydra:statusCode "200" .
 } order by DESC(?path)
