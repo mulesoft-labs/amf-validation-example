@@ -1,0 +1,19 @@
+{
+  "name": "@mulesoft/amf-client-js",
+  "version": "1.0.1",
+  "description": "AMF Library",
+  "main": "amf.js",
+  "author": "amf team",
+  "license": "SEE LICENCE IN MASTER BRANCH",
+  "homepage": "https://github.com/mulesoft/amf",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mulesoft/amf"
+  },
+  "bin": {
+    "amf": "./bin/amf"
+  },
+  "dependencies": {
+    "@mulesoft/amf-shacl-node": "1.0.0"
+  }
+}
