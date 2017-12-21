@@ -412,7 +412,7 @@ title: hello api
 We could validate it using the RAML standard profile using the following invocation:
 
 ``` bash
-$ java -jar amf.jar validate -in RAML file://api.raml
+$ java -jar amf.jar validate -in RAML -mime-in application/yaml file://api.raml
 ```
 
 The output of the invocation will the the JSON-LD document with the serialised graph for the validation report. For example if the validation is successful:
@@ -426,7 +426,7 @@ The output of the invocation will the the JSON-LD document with the serialised g
 The exit code of the command can be used to check if the invocation was successful:
 
 ``` bash
-$ java -jar amf.jar validate -in RAML file://api.raml
+$ java -jar amf.jar validate -in RAML -mime-in application/yaml file://api.raml
 {
   "@type": "http://www.w3.org/ns/shacl#ValidationReport",
   "http://www.w3.org/ns/shacl#conforms": true
@@ -440,7 +440,7 @@ For example if we try to validate the same API using the default OpenAPI profile
 
 
 ``` bash
-$ java -jar amf.jar validate -in OpenAPI file://api.raml
+$ java -jar amf.jar validate -in RAML -mime-in application/yaml -p OpenAPI file://api.raml
 {
   "@type": "http://www.w3.org/ns/shacl#ValidationReport",
   "http://www.w3.org/ns/shacl#conforms": false,
@@ -502,7 +502,7 @@ We can invoke now the `validate` command passing the custom profile URL using th
 
 
 ``` bash
-$ java -jar amf.jar validate -in RAML -cp file://profile.raml file://api.raml
+$ java -jar amf.jar validate -in RAML -mime-in application/yaml -cp file://profile.raml file://api.raml
 {
   "@type": "http://www.w3.org/ns/shacl#ValidationReport",
   "http://www.w3.org/ns/shacl#conforms": true,
@@ -543,38 +543,12 @@ $ echo $?
 0
 ```
 
-### Validation and parsing
-
-When parsing a model through the `parse` command, validation will also be triggered automatially by default. If a validation error is found, a textual representation of the validation report will also be emitted through standard error.
-
-
-``` bash
-$ java -jar amf.jar parse -in RAML -p OpenAPI file://api.raml
-Model: file://api.raml
-Profile: OpenAPI
-Conforms? false
-Number of results: 1
-
-Level: Violation
-
-- Source: http://raml.org/vocabularies/amf/parser#mandatory-api-version
-  Message: API Version is Mandatory
-  Level: Violation
-  Target: file://api.raml#/web-api
-  Property: http://schema.org/version
-  Position: Some(LexicalInformation([(3,0)-(12,0)]))
-$ echo $?
-254
-```
-
-Validation can be disable passing the option `v` to false.
-
 ### Parsing a validation profile
 
 AMF Validation Profiles are valid RAML dialect documents that can be parsed by default by the AMF parser. This can be accomplished just passing 'RAML' as the input syntax for the AMF parser. The Vocabulary profile dialect is loaded by default in AMF. Check the documentation about RAML Vocabularies and Dialect for more information about how to work with RAML extensions.
 
 ``` bash
-$ java -jar amf.jar parse -in RAML profile.raml
+$ java -jar amf.jar parse -in RAML -mime-in application/yaml profile.raml
 
 [
   {
@@ -627,8 +601,9 @@ The following Java snippet shows how to invoke programmatically the validation o
 ``` java
 package mulesfot.amf;
 
-import amf.client.RamlParser;
-import amf.validation.AMFValidationReport;
+import amf.core.client.Parser;
+import amf.core.validation.AMFValidationReport;
+import amf.model.document.BaseUnit;
 
 import java.util.concurrent.ExecutionException;
 
@@ -638,30 +613,31 @@ public class ValidationTest {
 
   public static void main(String[] args) throws ExecutionException, InterruptedException {
 
-    final RamlParser parser = new RamlParser();
+  // We initialise AMF
+  amf.plugins.document.WebApi.register(); // we need the WebAPI plugin to parse RAML specs
+  amf.plugins.features.AMFValidation.register(); // we need the AMF Validation plugin for custom validations
+  amf.Core.init().get(); // we block here
 
-    parser.parseFileAsync("file://validation/api.raml").get();
+  // Create a RAML parser
+  final Parser parser = amf.Core.parser("RAML 1.0", "application/yaml");
 
-    // Default RAML validation
-    final AMFValidationReport ramlReport = parser.reportValidation("RAML").get();
-
-    final AMFValidationReport oasReport = parser.reportValidation("OpenAPI").get();
-
-    final AMFValidationReport customReport = parser.reportCustomValidation("Test", "file://validation/profile.raml").get();
-
-    // Check the results
-    assert(ramlReport.conforms());
-    out.println("API conforms to RAML profile");
-    out.println(ramlReport);
-
-    assert(!oasReport.conforms());
-    out.println("API does not conform to OpenAPI profile");
-    out.println(oasReport);
-
-    assert(!customReport.conforms());
-    out.println("API conforms to the custom profile, but with a warning");
-    out.println(customReport);
-  }
+  // We parse the model
+  final BaseUnit model = parser.parseFileAsync("file://examples/api.raml").get();
+  
+  // Default RAML validation
+  final AMFValidationReport ramlReport = amf.Core.validate(model, "RAML", "RAML").get();
+  
+  // Check the results
+  assert(ramlReport.conforms());
+  out.println(ramlReport);
+  
+  // Custom "Banking" profile validation
+  final AMFValidationReport customReport = amf.Core.validate(model, "Banking", "AMF").get();
+  
+  // Check the results
+  assert(customReport.conforms());
+  out.println(customReport);
+  
 }
 ```
 
