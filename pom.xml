@@ -31,19 +31,19 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.mule</groupId>
+            <groupId>org.mule.amf</groupId>
             <artifactId>amf-webapi_2.12</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </dependency>
         <dependency>
-            <groupId>org.mule</groupId>
+            <groupId>org.mule.amf</groupId>
             <artifactId>amf-validation_2.12</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </dependency>
         <dependency>
-            <groupId>org.mule</groupId>
+            <groupId>org.mule.amf</groupId>
             <artifactId>amf-vocabularies_2.12</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </dependency>
     </dependencies>
 </project>
