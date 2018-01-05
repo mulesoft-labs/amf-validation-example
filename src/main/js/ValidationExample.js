@@ -1,5 +1,5 @@
 var Promise = require("promise");
-var amf = require("@mulesoft/amf-client-js");
+var amf = require("amf-client-js");
 
 // We initialise AMF
 amf.plugins.document.WebApi.register();

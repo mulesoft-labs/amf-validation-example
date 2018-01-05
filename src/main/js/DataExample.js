@@ -1,7 +1,7 @@
 var Promise = require("promise");
 var rdfstore = require("rdfstore");
 var rdflib = require("rdflib");
-var amf = require("@mulesoft/amf-client-js");
+var amf = require("amf-client-js");
 var fs = require("fs");
 
 

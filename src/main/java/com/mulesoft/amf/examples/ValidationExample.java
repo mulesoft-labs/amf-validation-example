@@ -2,7 +2,7 @@ package com.mulesoft.amf.examples;
 
 
 import amf.core.client.Parser;
-import amf.core.validation.AMFValidationReport;
+import amf.validation.AMFValidationReport;
 import amf.model.document.BaseUnit;
 
 import java.util.concurrent.ExecutionException;
