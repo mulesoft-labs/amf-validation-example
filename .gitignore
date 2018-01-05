@@ -1,4 +1,6 @@
 .idea
-out
-amf-barclays.iml
 .ignore
+.DS_Store
+out
+node_modules/
+target/
