@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/mulesoft-labs/amf-validation-example#readme",
   "dependencies": {
-    "amf-client-js": "^1.0.1",
+    "amf-client-js": "^1.1.0",
     "promise": "^8.0.1",
     "rdflib": "^0.16.5",
     "rdfstore": "^0.9.17"
