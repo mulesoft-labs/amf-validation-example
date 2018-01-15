@@ -1,5 +1,5 @@
 {
-  "name": "amf-validation-toolkit",
+  "name": "amf-validation-example",
   "version": "1.0.0",
   "description": "Some examples about AMF validation",
   "directories": {
@@ -7,7 +7,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mulesoft-labs/amf-validation-toolkit.git"
+    "url": "git+https://github.com/mulesoft-labs/amf-validation-example.git"
   },
   "keywords": [
     "amf",
@@ -16,9 +16,9 @@
   "author": "Mulesoft",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mulesoft-labs/amf-validation-toolkit/issues"
+    "url": "https://github.com/mulesoft-labs/amf-validation-example/issues"
   },
-  "homepage": "https://github.com/mulesoft-labs/amf-validation-toolkit#readme",
+  "homepage": "https://github.com/mulesoft-labs/amf-validation-example#readme",
   "dependencies": {
     "amf-client-js": "^1.0.1",
     "promise": "^8.0.1",

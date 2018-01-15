@@ -1,6 +1,6 @@
-# AMF Validation Kit
+# AMF Validation Example
 
-This repository include resources to test AMF validation support
+This repository includes examples to test AMF "validation" feature.
 
 ## Install
 
@@ -24,7 +24,7 @@ $ node src/main/js/DataExample.js
 
 *Java*:
 ```sh
-$ java -cp ./target/amf-validation-toolkit-1.0-SNAPSHOT-jar-with-dependencies.jar com.mulesoft.amf.examples.ValidationExample
+$ java -cp ./target/amf-validation-example-1.0-SNAPSHOT-jar-with-dependencies.jar com.mulesoft.amf.examples.ValidationExample
 (...)
 ```
 

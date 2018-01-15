@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mulesoft</groupId>
-    <artifactId>amf-validation-toolkit</artifactId>
+    <artifactId>amf-validation-example</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
@@ -45,7 +45,8 @@
         <repository>
             <id>mulesoft-master</id>
             <name>Mulesoft Master</name>
-            <url>https://repository-master.mulesoft.org/nexus/content/repositories/releases</url>
+            <!-- <url>https://repository-master.mulesoft.org/nexus/content/repositories/releases</url> -->
+            <url>https://repository-master.mulesoft.org/nexus/content/repositories/snapshots/</url>
         </repository>
     </repositories>
 
@@ -53,17 +54,17 @@
         <dependency>
             <groupId>org.mule.amf</groupId>
             <artifactId>amf-webapi_2.12</artifactId>
-            <version>1.0.2</version>
+            <version>1.1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.mule.amf</groupId>
             <artifactId>amf-validation_2.12</artifactId>
-            <version>1.0.2</version>
+            <version>1.1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.mule.amf</groupId>
             <artifactId>amf-vocabularies_2.12</artifactId>
-            <version>1.0.2</version>
+            <version>1.1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
