@@ -13,7 +13,7 @@ amf.Core.init().then(function () {
   parser.parseFileAsync("file://examples/api.raml")
     .then(function(model) { return validate("RAML", model) }) // Validating using the default RAML validation profile
     .then(function(model) { return validate("OpenAPI", model) }) // Validating using the OpenAPI validatinp rofile
-    .then(function(model) { return validateCustom("Banking","file://examples/profile.raml", model) }) // Validating using a custom profile
+    .then(function(model) { return validateCustom("ACME","file://examples/profile.raml", model) }) // Validating using a custom profile
     .catch(function(err) {
       console.log("Error validating")
       console.log(err);

@@ -33,7 +33,7 @@ public class ValidationExample {
         validate("OpenAPI", model);
 
         // Custom profile validation
-        validateCustom("Banking", "file://examples/profile.raml", model);
+        validateCustom("ACME", "file://examples/profile.raml", model);
     }
 
     /*

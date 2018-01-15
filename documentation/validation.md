@@ -631,8 +631,8 @@ public class ValidationTest {
   assert(ramlReport.conforms());
   out.println(ramlReport);
   
-  // Custom "Banking" profile validation
-  final AMFValidationReport customReport = amf.Core.validate(model, "Banking", "AMF").get();
+  // Custom "ACME" profile validation
+  final AMFValidationReport customReport = amf.Core.validate(model, "ACME", "AMF").get();
   
   // Check the results
   assert(customReport.conforms());
