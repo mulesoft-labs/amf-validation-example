@@ -22,7 +22,7 @@
   "dependencies": {
     "amf-client-js": "^1.1.0",
     "promise": "^8.0.1",
-    "rdflib": "^0.16.5",
+    "rdflib": "^2.2.15",
     "rdfstore": "^0.9.17"
   }
 }
